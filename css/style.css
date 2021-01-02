@@ -142,8 +142,8 @@ a {
       color: #bac964 !important; }
 
 .site-hero {
-  background-color: #ccc;
-  background-size: cover;
+  background-color: #333;
+  background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
   position: relative;
@@ -159,7 +159,7 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); }
+    background: rgba(0, 0, 0, 0.1); }
   .site-hero h1 {
     font-weight: 200;
     margin-bottom: 20px;
