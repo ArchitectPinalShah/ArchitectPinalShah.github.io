@@ -41,7 +41,7 @@
 
 
 
-	<section class="site-hero" style="background-image: url(images/image_1.gif);" id="section-home" data-stellar-background-ratio="0.5">
+	<section class="site-hero" style="background-image: url(images/image_1.gif);" id="section-home">
 		<div class="container">
 			<div class="row intro-text align-items-top justify-content-center">
 				<div class="col-md-10 text-center pt-5">
@@ -517,25 +517,24 @@
 				</div>
 
 				<div class="col-md-7 mb-5 mb-md-0">
-					<form action="" class="site-form">
+					<!--form class="site-form" method="POST" id="ss-form" target="_self"-->
 						<h3 class="mb-5">Get In Touch</h3>
 						<div class="form-group">
-							<input type="text" class="form-control px-3 py-4" placeholder="Your Name">
+							<input id="name" type="text" class="form-control px-3 py-4" placeholder="Your Name">
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control px-3 py-4" placeholder="Your Email">
+							<input type="email" id="email" class="form-control px-3 py-4" placeholder="Your Email">
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control px-3 py-4" placeholder="Your Phone">
+							<input type="tel"  pattern="[0-9]{10,12}" id="phone" class="form-control px-3 py-4" placeholder="Your Phone">
 						</div>
 						<div class="form-group mb-5">
-							<textarea class="form-control px-3 py-4"cols="30" rows="10" placeholder="Write a Message"></textarea>
+							<textarea id="message" class="form-control px-3 py-4"cols="30" rows="10" placeholder="Write a Message"></textarea>
 						</div>
 						<div class="form-group">
-							<input type="submit" class="btn btn-primary  px-4 py-3" value="Send Message">
+							<input type="submit" class="btn btn-primary  px-4 py-3" value="Send Message" onclick="postContactToGoogle()">
 						</div>
-					</form>
-				</div>
+					</div>
 				<div class="col-md-5 pl-md-5">
 					<h3 class="mb-5">My Contact Details</h3>
 					<ul class="site-contact-details">
@@ -578,7 +577,31 @@
 
 
 
+    <script>
+    function postContactToGoogle() {
+        var email = $('#email').val();
+        var name = $('#name').val();
+        var phone = $('#phone').val();
+        var message = $('#message').val();
 
+            $.ajax({
+                url: "https://docs.google.com/forms//u/1/d/e/16i1I2wFCDcx5PbryRzOnLnRcUJTMzuEz0CWwiaKVxLc/formResponse",
+                data: { "entry_2005620554": name,
+		"entry_227649005": email, "entry_1166974658": phone,"entry_1846923513": message
+    },
+                type: "POST",
+                dataType: "xml",
+                statusCode: {
+                    0: function () {
+                        alert("Error.Try again!");
+                    },
+                    200: function () {
+                        alert("Submitted.Thank you!");
+                    }
+                }
+            });
+    }
+</script>
 	<script src="js/vendor/jquery.min.js"></script>
 	<script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/vendor/popper.min.js"></script>
