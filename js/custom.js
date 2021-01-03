@@ -315,8 +315,11 @@
       };
 
 
+		var dataInit = $("#livingli").attr('data-filter');
+        $grid.isotope({
+          filter: dataInit
+        })
 	};
-
 
 	$(function(){
 
